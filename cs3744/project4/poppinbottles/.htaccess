@@ -13,8 +13,8 @@ RewriteRule ^processLogin/?$ app/controller/siteController.php?action=processLog
 RewriteRule ^processLogout/?$ app/controller/siteController.php?action=processLogout [QSA,L]
 RewriteRule ^processNewsLetter/?$ app/controller/siteController.php?action=processNewsLetter [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=home [QSA,L]
-RewriteRule ^locations/find/?$ app/controller/productController.php?action=find [QSA,L]
 RewriteRule ^locations/?$ app/controller/siteController.php?action=locations [QSA,L]
+RewriteRule ^search/?$ app/controller/siteController.php?action=search [QSA,L]
 
 # Product
 RewriteRule ^products/view/(\d+)/?$ app/controller/productController.php?action=viewProduct&pid=$1 [QSA,L]

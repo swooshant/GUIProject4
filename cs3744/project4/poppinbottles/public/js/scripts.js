@@ -22,11 +22,15 @@ $(document).ready(function(){
 		var value = $('#search .inputForm').val();
 		if (value == '') {
 			$('#search .inputForm').css('background-color', 'red');
-			$(this).css('color', 'red');	
+			$(this).css('color', 'red');
+			return false;	
 		}
 		else{
 			$('#search .inputForm').css('background-color', 'white');
 			$(this).css('color', 'white');	
+			$("gcse-searchbox").attr("data-placeholder", "hello");
+			return true;
+
 		}
 	});
 

@@ -27,6 +27,9 @@ class ProductController {
 				else if(isset($_POST['edit'])){
 				    $this->editProduct($productID);
 				}
+				else{
+					$this->addToCart($productID);
+				}
 			break;
 
 			case 'editProductProcess':
@@ -39,7 +42,6 @@ class ProductController {
 			case 'addItemProcess':
 				$this->addItemProcess();
 			break;
-
 			//default case to home
 			default:
 				header('Location: '.BASE_URL);
@@ -123,7 +125,7 @@ class ProductController {
 	public function editProduct($id) {
 		$pageName = 'Edit Product';
 		
-		 $productClass = new Product();
+		$productClass = new Product();
 		$viewingProduct = $productClass->loadById($id);
 		
 		$product = array();
@@ -161,5 +163,21 @@ class ProductController {
 	    header('Location: '.BASE_URL.'/browse/');
 	}
 
+	public function addToCart($id){
+		$cartItem = new Product();
+		$cart = $cartItem->loadById($id);
 
+		$product['WineTitle'] = $cart->get('WineTitle');
+		$product['ShortDesc'] = $cart->get('ShortDesc');
+		$product['LongDesc'] = $cart->get('LongDesc');
+		$product['Volumes'] = $cart->get('Volumes');
+		$product['Price'] = $cart->get('Price');
+		$product['Rating'] = $cart->get('Rating');
+		$product['Date_Created'] = $cart->get('Date_Created');
+		$product['Img_Url'] = $cart->get('Img_Url');
+		
+		$productJSON = json_encode($product);
+		header('Content-Type: application/json');
+		echo $productJSON;
+	}
 }

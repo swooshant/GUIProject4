@@ -63,10 +63,10 @@
 					echo '<p>Logged In As Admin: '.$_SESSION['adminLogin'].'</p>';
 				}
 			?>
-
-			<form id="search" >
+			
+			<form action="<?= BASE_URL ?>/search/" id="search" >
 				<input type="text" placeholder="Search......" maxlength="35" class="inputForm"> 
-				<input type = "button" value="Go!" class="submit">
+				<input type = "submit" value="Go!" class="submit" >
 			</form>
 
 		</div>	

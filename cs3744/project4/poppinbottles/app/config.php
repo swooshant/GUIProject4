@@ -11,4 +11,4 @@ define('DB_PASS','admin');
 define('DB_DATABASE','bottleup');
 
 //buffer the php errors
-ob_start();
+// ob_start();

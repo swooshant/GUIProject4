@@ -229,7 +229,7 @@ img.logo{
 	padding: 5px;
 }
 
-#buttonBar .vinbut{
+#buttonBar .vinbut {
 	margin:0;
 	clear: both;
 }
@@ -237,9 +237,15 @@ img.logo{
 
 /*Browse Page  */
 
-.browseContent {
-  width: 81%;
-  float: right;
+
+#browseContainer {
+	width:100%;
+}
+
+
+#browseContent {
+  margin:0 auto;
+  width:80%;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -293,8 +299,9 @@ img.logo{
 
 #sidebar {
   /*display: none;*/
-  width: 15%;
+  width: 10%;
   float: left;
+  height: 100px;
   padding: 30px 10px 0px 25px;
   text-align: left;
   border: 2px solid #333;
@@ -310,6 +317,26 @@ img.logo{
 	margin: 10px 0px 0px 0px;
 }
 
+#cart {
+  /*display: none;*/
+  width: 10%;
+  height: 100px;
+  float: right;
+  padding: 30px 10px 0px 25px;
+  text-align: left;
+  border: 2px solid #333;
+  margin-top: 20px;
+  padding: 0px 0px 1200px 15px;
+}
+
+#cart label{
+	display: block;
+}
+
+#cart .submit{
+	margin: 10px 0px 0px 0px;
+}
+
 /*product-page*/
 
 .back{
@@ -321,6 +348,14 @@ img.logo{
 
 }
 
+#searchWrap{
+	width:90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	overflow-y: scroll;
+	max-height: 99%;
+}
 
 #prodcontent-left{
 	float:left;

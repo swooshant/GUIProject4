@@ -36,14 +36,15 @@ class SiteController {
 			break;
 			case 'locations' :
 				$this->locations();
-				break;
+			break;
+			case 'search': 
+				$this->searchPage();
+			break;
 				// Defaults to homepage url
-      default:
-        header('Location: '.BASE_URL);
-        exit();
-
+      		default:
+        			header('Location: '.BASE_URL);
+        			exit();
 		}
-
 	}
 
 	//loads home page and also the top rated items
@@ -60,11 +61,10 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/home.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
-		
 	}
 
 	//prowse page with all the items from the database
-	public function browse(){
+	public function browse() {
 		$pageName = 'browse';
 
 		// load the top rated into results, to be used by home.tpl
@@ -79,21 +79,21 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
-	//simple about us page
+		//simple about us page
 	public function aboutUs() {
 		$pageName = 'aboutUs';
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/aboutUs.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
-  }
+  	}
 
-  //takes user to page to find locaitons near them
-  public function locations() {
-  	$pageName = 'locations';
-  	include_once SYSTEM_PATH.'/view/header.tpl';
+	  //takes user to page to find locaitons near them
+	public function locations() {
+	  	$pageName = 'locations';
+	  	include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/location.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
-  }
+	}
 
   	//gets admin data (id 1) and checks against it to let a login happen
 	public function processLogin($u, $p) {
@@ -136,9 +136,67 @@ class SiteController {
 
 	}
 
+	
+	// function to geocode address, it will return false if unable to geocode address
+	function geocode($address) {
+	 
+	    // url encode the address
+	    $address = urlencode($address);
+	     
+	    // google map geocode api url
+	    $url = "http://maps.google.com/maps/api/geocode/json?address={$address}";
+	 
+	    // get the json response
+	    $resp_json = file_get_contents($url);
+	     
+	    // decode the json
+	    $resp = json_decode($resp_json, true);
+	 
+	    	// response status will be 'OK', if able to geocode given address 
+	    	if($resp['status']=='OK') {
+	 
+		      // get the important data
+		      $lati = $resp['results'][0]['geometry']['location']['lat'];
+		      $longi = $resp['results'][0]['geometry']['location']['lng'];
+		      $formatted_address = $resp['results'][0]['formatted_address'];
+	         
+		      // verify if data is complete
+		      if($lati && $longi && $formatted_address)
+		      {   
+		            // put the data in the array
+		            $data_arr = array();            
+		             
+		            array_push(
+		                $data_arr, 
+		                    $lati, 
+		                    $longi, 
+		                    $formatted_address
+		                );
+		             
+		            return $data_arr; 
+		      }
+		      else
+		      {
+		            return false;
+		      }  
+		}
+	      else
+	      {
+	      	return false;
+	      }
+	}
 
-
-
-
-
+	public function searchPage(){
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/search.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
 }
+
+
+
+
+
+
+
+
