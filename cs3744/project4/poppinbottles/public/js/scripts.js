@@ -11,7 +11,7 @@ $(document).ready(function(){
 				$('#picMes').css('font-style', 'italic');
 				flag = false;
 			}
-			$('#vineImag').attr("src","/public/img/" + ImNum);
+			$('#vineImag').attr("src","/GUIProject4/cs3744/project4/poppinbottles/public/img/" + ImNum);
 			$('#vineImag').fadeIn(350);
 		});
 		return false;

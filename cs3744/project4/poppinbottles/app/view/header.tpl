@@ -47,6 +47,7 @@
 				<li><a <?= isSelected($pageName, 'Home') ?> href="<?= BASE_URL ?>/">Home</a></li>
 				<li><a <?= isSelected($pageName, 'browse') ?> href="<?= BASE_URL ?>/browse/">Browse</a></li>
 				<li><a <?= isSelected($pageName, 'aboutUs') ?> href="<?= BASE_URL ?>/aboutUs/">About Us</a></li>
+				<li><a <?= isSelected($pageName, 'locations') ?> href="<?= BASE_URL ?>/locations/">Find Locations</a></li>
 				<?php if(isset($_SESSION['adminLogin'])): ?>
 				<li><a <?= isSelected($pageName, 'addItem') ?> href="<?= BASE_URL ?>/addItem">Add Item</a></li>
 				<?php endif; ?>

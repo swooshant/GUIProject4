@@ -34,6 +34,9 @@ class SiteController {
 			case 'processNewsLetter' :
 				$this->processNewsLetter();
 			break;
+			case 'locations' :
+				$this->locations();
+				break;
 				// Defaults to homepage url
       default:
         header('Location: '.BASE_URL);
@@ -82,7 +85,15 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/aboutUs.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
-  	}
+  }
+
+  //takes user to page to find locaitons near them
+  public function locations() {
+  	$pageName = 'locations';
+  	include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/location.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+  }
 
   	//gets admin data (id 1) and checks against it to let a login happen
 	public function processLogin($u, $p) {
