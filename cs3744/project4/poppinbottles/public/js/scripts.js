@@ -28,7 +28,7 @@ $(document).ready(function(){
 		else{
 			$('#search .inputForm').css('background-color', 'white');
 			$(this).css('color', 'white');	
-			$("gcse-searchbox").attr("data-placeholder", "hello");
+			$("input.gsc-input").attr("value", value);
 			return true;
 
 		}

@@ -144,7 +144,7 @@ class SiteController {
 	    $address = urlencode($address);
 	     
 	    // google map geocode api url
-	    $url = "http://maps.google.com/maps/api/geocode/json?address={$address}";
+	    $url = "http://maps.google.com/maps/api/geocode/json?address={$address}";https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAWgxNoCo1FVZSm6azr-hXBV9Okvmzz3uI
 	 
 	    // get the json response
 	    $resp_json = file_get_contents($url);

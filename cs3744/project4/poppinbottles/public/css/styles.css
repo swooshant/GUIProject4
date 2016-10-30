@@ -72,15 +72,10 @@ img.logo{
   
 }
 
-#search .inputForm{
-	float: left;
-	width: 78%;
-}
-
 /* specific placement of the search submit button*/
 #search .submit{
 	float: right;
-	width: 15%;
+	width: 80%;
 }
 
 /*styling all the submit buttons on all the pages*/

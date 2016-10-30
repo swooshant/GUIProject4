@@ -65,8 +65,7 @@
 			?>
 			
 			<form action="<?= BASE_URL ?>/search/" id="search" >
-				<input type="text" placeholder="Search......" maxlength="35" class="inputForm"> 
-				<input type = "submit" value="Go!" class="submit" >
+				<input type="submit" name="Search"  value="Search the internet for Wine!" class="inputForm submit"> 
 			</form>
 
 		</div>	
