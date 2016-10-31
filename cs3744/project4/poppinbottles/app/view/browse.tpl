@@ -23,14 +23,89 @@
 	<div id="cart">
 
 		<h3>Cart</h3>
+		
+		<div id = "cartItems"></div>
+		<script type="text/javascript">
 
-		<h4>Grapes:</h4>
-		<label><input type="checkbox" name="Grape" value="Pinot Noir" /> Pinot Noir</label>
-		<label><input type="checkbox" name="Grape" value="Zinfindel" checked="checked" /> Zinfindel</label>
-		<label><input type="checkbox" name="Grape" value="Pinot Grigio" checked="checked" /> Pinot Grigio</label>
-		<label><input type="checkbox" name="Grape" value="Malbec" /> Malbec</label>
+		function updateTheCart() {
+			var $cart = $('#cartItems');
+			$.ajax(
+				{
+					url: "<?= BASE_URL ?>"+ "/products/updateCart/",
+					type: "GET",
+					
+					success: function(result)
+					{
 
-		<button class="submit">Update filters</button>
+						$cart.empty();		
+					//	var test = JSON.parse(result);
+						//console.log(result);
+						$.each(result, function(i, item) {
+							var json = JSON.parse(item);
+							//console.log(json);
+							$cart.append('<li>' + json.WineTitle + ', Price: $' + json.Price + '</li>');
+						});
+				  	},
+				  	error: function() {
+				  		alert('error when updating the cart.');
+				  	}
+				}
+			);
+		}
+
+		function postToSession(id) {
+			var $cart = $('#cartItems');
+
+			var cartData = {
+				'id': id
+			};
+
+			$.ajax(
+			{				
+				type: "POST",
+				url: "<?= BASE_URL ?>"+ "/products/updatePostCart/",
+				data: cartData,
+				success: function(result) {
+					updateTheCart();
+				//	console.log(result);
+			  	},
+			  	error: function(xhr, status, error) {
+  				var err = eval("(" + xhr.responseText + ")");
+  				alert(err.Message);
+				}
+			});
+		}
+		
+		function clearCart() {
+			var $cart = $('#cartItems');
+
+			var cartData = {
+				'id': 'clear'
+			};
+
+			$.ajax(
+			{				
+				type: "POST",
+				url: "<?= BASE_URL ?>"+ "/products/updatePostCart/",
+				data: cartData,
+				success: function(result) {
+					$cart.empty();
+					updateTheCart();
+			  	},
+			  	error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+  					alert(err.Message);
+				}
+			});
+		}
+
+		$(document).ready(function () {
+  			updateTheCart();
+		});
+
+		</script>
+
+		 <button class="submit" onclick= "clearCart()">Clear Cart</button>
 
 	</div>
 
@@ -45,7 +120,7 @@
 							<img class="product-image" src="<?= BASE_URL ?>/public/img/<?= $row['Img_Url'] ?>" alt="<?= $row['title'] ?>" />
 							<h3><?= $row['WineTitle'] ?></h3>
 						</a>
-						<button class="submit" type="button" value="cartPressed" onclick=<?php $this->addToCart ?>> Add to Cart</button>
+						<button class="submit" type="button" id = "updateCart" value="cartPressed" onclick="postToSession(<?=$row['id']?>)"> Add to Cart</button>
 						<p class="shortdesc"><?= $row['ShortDesc'] ?></p>
 						<p class="price"><?= $row['Price'] ?></p>
 						<?php if(isset($_SESSION['adminLogin'])): ?>

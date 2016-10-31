@@ -13,6 +13,9 @@ $pc->route($action);
 class SiteController {
 	public function route($action) {
 
+		// session_start();
+		// session_destroy();
+
 		switch($action) {
 			case 'home':
 				$this->home();
@@ -115,6 +118,9 @@ class SiteController {
 
 	}
 
+
+	// $_SESSION['CART'] = Array();
+	// $_SESSION['CART'] .append(some_val);
 	//just destroys the admin login
 	public function processLogout() {
 		session_start(); 

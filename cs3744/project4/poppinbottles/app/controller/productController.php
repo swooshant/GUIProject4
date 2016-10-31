@@ -13,6 +13,12 @@ class ProductController {
 
 	// route us to the appropriate class method for this action
 	public function route($action) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		
+		
+
 		switch($action) {
 			case 'viewProduct':
 				$productID = $_GET['pid'];
@@ -27,9 +33,6 @@ class ProductController {
 				else if(isset($_POST['edit'])){
 				    $this->editProduct($productID);
 				}
-				else{
-					$this->addToCart($productID);
-				}
 			break;
 
 			case 'editProductProcess':
@@ -41,6 +44,18 @@ class ProductController {
 			break;
 			case 'addItemProcess':
 				$this->addItemProcess();
+			break;
+			case 'postCart':
+				$productID = $_POST['id'];
+				if ($productID == 'clear') {
+					$this->clearCart();
+				}
+				else {
+					$this->sessionPost($productID);
+				}
+			break;
+			case 'addToCart':
+				$this->addToCart();
 			break;
 			//default case to home
 			default:
@@ -163,9 +178,10 @@ class ProductController {
 	    header('Location: '.BASE_URL.'/browse/');
 	}
 
-	public function addToCart($id){
+	public function sessionPost($id){
 		$cartItem = new Product();
 		$cart = $cartItem->loadById($id);
+
 
 		$product['WineTitle'] = $cart->get('WineTitle');
 		$product['ShortDesc'] = $cart->get('ShortDesc');
@@ -178,6 +194,37 @@ class ProductController {
 		
 		$productJSON = json_encode($product);
 		header('Content-Type: application/json');
+
+		if (!isset($_SESSION['cart'])) {
+			$_SESSION['cart'] = [];
+		}
+
+		//print($productJSON);
+
+		// 
+		// cartSession($productJSON);
+		// print($_SESSION['cart']);
+		array_push($_SESSION['cart'], $productJSON);
+		// print($_SESSION['cart']);
+		//echo productJSON;
+
+		echo $productJSON;
+
+	}
+
+	public function addToCart(){
+			header('Content-Type: application/json');
+			
+			$productJSON = json_encode($_SESSION['cart']);
+			echo $productJSON;
+	}
+
+	public function clearCart() {
+		unset($_SESSION['cart']);
+		header('Content-Type: application/json');
+
+		$productJSON = json_encode($_SESSION['cart']);
 		echo $productJSON;
 	}
+	
 }

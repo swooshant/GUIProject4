@@ -13,9 +13,9 @@
 		<p class="aboutUsParagraph"> 
 			We are an online retailer as well as a high volume producer of wine. We have three distinct winery's located accross the United States. The first two are in Nappa Valley and the third one is in Virginia. You can view the winery's on the home page. We do everything from growing the grapes to bottling and shipping. Lastly, we provide the highest quality of wine from other producers.
 		</p>
-		<h2 class="aboutUsHeadings"> Visit one of our 3 Locations! </h2>
+		<!-- <h2 class="aboutUsHeadings"> Visit one of our 3 Locations! </h2>
 		<a href="https://www.google.com/maps">
-		<!-- image taken from google maps -->
+		image taken from google maps 
 		<img class="headerpic" src="<?= BASE_URL ?>/public/img/maps.jpg" alt="Location of headquarters" id="mapPic">
-		</a>
+		</a> -->
 	</div>

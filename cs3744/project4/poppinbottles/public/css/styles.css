@@ -132,8 +132,10 @@ img.logo{
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 }
+
+
 
 .headerpic{
 	position: relative;
@@ -240,7 +242,7 @@ img.logo{
 
 #browseContent {
   margin:0 auto;
-  width:80%;
+  width:75%;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -314,7 +316,7 @@ img.logo{
 
 #cart {
   /*display: none;*/
-  width: 10%;
+  width: 15%;
   height: 100px;
   float: right;
   padding: 30px 10px 0px 25px;
@@ -326,6 +328,10 @@ img.logo{
 
 #cart label{
 	display: block;
+}
+
+#cartItems li {
+	text-decoration: none;
 }
 
 #cart .submit{
@@ -622,7 +628,7 @@ p.zipcodefield {
 #map {
 	
 	width: 60%;
-	height: 60%;
+	height: 500px;
 	margin-left: 20%;
 }
 /*End Location*/

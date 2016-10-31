@@ -4,8 +4,8 @@
       
       <form action="<?= BASE_URL ?>/locations/" method="POST">
             <div class="zipcodecontainer">
-                  <input type='text' name='address' placeholder='Enter any address here' />
-                  <input type='submit' value='Geocode!' />
+                  <input type='text' name='address' placeholder='Enter address or zip code' />
+                  <input type='submit' value='Find!' />
             </div>
       </form>
 
