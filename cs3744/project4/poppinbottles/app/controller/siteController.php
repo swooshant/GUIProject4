@@ -13,9 +13,6 @@ $pc->route($action);
 class SiteController {
 	public function route($action) {
 
-		// session_start();
-		// session_destroy();
-
 		switch($action) {
 			case 'home':
 				$this->home();
@@ -66,7 +63,7 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
-	//prowse page with all the items from the database
+	//Browse page with all the items from the database
 	public function browse() {
 		$pageName = 'browse';
 
@@ -119,8 +116,6 @@ class SiteController {
 	}
 
 
-	// $_SESSION['CART'] = Array();
-	// $_SESSION['CART'] .append(some_val);
 	//just destroys the admin login
 	public function processLogout() {
 		session_start(); 
@@ -191,7 +186,8 @@ class SiteController {
 	      	return false;
 	      }
 	}
-
+	
+	//Loads the templates for the search page
 	public function searchPage(){
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/search.tpl';

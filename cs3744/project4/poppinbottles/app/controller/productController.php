@@ -13,12 +13,10 @@ class ProductController {
 
 	// route us to the appropriate class method for this action
 	public function route($action) {
+		//start a session if it's not set
 		if (!isset($_SESSION)) {
 			session_start();
 		}
-		
-		
-
 		switch($action) {
 			case 'viewProduct':
 				$productID = $_GET['pid'];
@@ -46,6 +44,7 @@ class ProductController {
 				$this->addItemProcess();
 			break;
 			case 'postCart':
+				//either clear cart or add item to cart session.
 				$productID = $_POST['id'];
 				if ($productID == 'clear') {
 					$this->clearCart();
@@ -178,6 +177,8 @@ class ProductController {
 	    header('Location: '.BASE_URL.'/browse/');
 	}
 
+	//retrieves the id from a post and puts it into a cart session
+	//puts all the product infromation as JSON into cart session
 	public function sessionPost($id){
 		$cartItem = new Product();
 		$cart = $cartItem->loadById($id);
@@ -195,23 +196,21 @@ class ProductController {
 		$productJSON = json_encode($product);
 		header('Content-Type: application/json');
 
+		//if session cart not set, create an empty one.
 		if (!isset($_SESSION['cart'])) {
 			$_SESSION['cart'] = [];
 		}
 
-		//print($productJSON);
-
-		// 
-		// cartSession($productJSON);
-		// print($_SESSION['cart']);
 		array_push($_SESSION['cart'], $productJSON);
-		// print($_SESSION['cart']);
-		//echo productJSON;
 
 		echo $productJSON;
 
 	}
 
+	/*
+	 * function addToCart
+	   returns all the products in the cart as a json  
+	 */
 	public function addToCart(){
 			header('Content-Type: application/json');
 			
@@ -219,6 +218,10 @@ class ProductController {
 			echo $productJSON;
 	}
 
+	/*
+	 * function clearCart() clears the cart of all items 
+	 	by returning unsetting the session 
+	 */
 	public function clearCart() {
 		unset($_SESSION['cart']);
 		header('Content-Type: application/json');

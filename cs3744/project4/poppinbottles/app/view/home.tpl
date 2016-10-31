@@ -20,7 +20,7 @@
 							<img class="product-image" src="<?= BASE_URL ?>/public/img/<?= $row['Img_Url'] ?>" alt="<?= $row['WineTitle'] ?>" />
 							<h3><?= $row['WineTitle'] ?></h3>
 						</a>
-						<button class="submit" type="button" value="cartPressed" onclick="<?php $this->addToCart ?>"> Add to Cart</button>
+					<!--	<button class="submit" type="button" value="cartPressed" onclick="<?php $this->addToCart ?>"> Add to Cart</button> -->
 						<p><?= $row['ShortDesc'] ?></p>
 						<p class="price"><?= $row['Price'] ?></p>
 						<?php if(isset($_SESSION['adminLogin'])): ?>

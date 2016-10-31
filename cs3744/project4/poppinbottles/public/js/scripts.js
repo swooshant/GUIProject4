@@ -6,7 +6,7 @@ $(document).ready(function(){
 	{
 		$('#vineImag').fadeOut(350, function() {
 			if(flag == true) { 
-				$('#buttonBar').append("<br> <br><a href='<?= BASE_URL ?>/aboutUs/' <h5 id='picMes'> Check Out: AboutUs for more information on our Vineyard Locations! </h5></a>");
+				$('#buttonBar').append("<br> <br><a href='aboutUs/' <h5 id='picMes'> Check Out: AboutUs for more information on our Vineyard Locations! </h5></a>");
 				$('#picMes').css('color', 'white');
 				$('#picMes').css('font-style', 'italic');
 				flag = false;
